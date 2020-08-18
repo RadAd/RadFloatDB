@@ -5,6 +5,7 @@
 #include <atlapp.h>
 #include <atlcrack.h>
 #include <atltypes.h>
+#include <atlwinx.h>
 
 #include <string>
 #include <vector>
@@ -23,7 +24,7 @@ typedef CWinTraits<WS_POPUPWINDOW, WS_EX_TOOLWINDOW>		CToolWinTraits;
 typedef CWinTraitsOR<WS_THICKFRAME, 0, CToolWinTraits>		CFloatWinTraits;
 
 class CFloatWnd :
-    public CWindowImpl<CFloatWnd, CWindow, CFloatWinTraits>
+    public CWindowImpl<CFloatWnd, CWindowEx, CFloatWinTraits>
 {
 private:
     static std::vector<CFloatWnd*> s_wnds;
