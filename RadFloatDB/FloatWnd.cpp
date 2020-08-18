@@ -249,8 +249,14 @@ void CFloatWnd::OnContextMenu(CWindow wnd, CPoint point)
 UINT CFloatWnd::OnNcHitTest(CPoint point)
 {
     UINT uHit = static_cast<UINT>(DefWindowProc());
-    if (uHit == HTTOP || uHit == HTTOPLEFT || uHit == HTTOPRIGHT)
-        uHit = HTCAPTION;
+    CRect rc;
+    GetWindowRect(&rc);
+    switch (uHit)
+    {
+    case HTTOP: uHit = HTCAPTION; break;
+    case HTTOPLEFT: uHit = rc.Height() < 32 ? HTBOTTOMLEFT : HTCAPTION; break;
+    case HTTOPRIGHT: uHit = rc.Height() < 32 ? HTBOTTOMRIGHT : HTCAPTION; break;
+    }
     return uHit;
 }
 
