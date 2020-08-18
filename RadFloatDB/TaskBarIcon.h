@@ -9,6 +9,9 @@
 
 class CTaskBarIcon : public CWindow
 {
+private:
+    static UINT s_uTaskbarRestart;
+
 public:
     BOOL ProcessWindowMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lResult, DWORD dwMsgMapID = 0)
     {
@@ -24,6 +27,7 @@ public:
         MSG_WM_CREATE(OnCreate)
         MSG_WM_DESTROY(OnDestroy)
         MESSAGE_HANDLER_EX(MYWM_NOTIFYICON, OnNotifyIcon)
+        MESSAGE_HANDLER(s_uTaskbarRestart, OnTaskbarRestart)
     END_MSG_MAP()
 #undef ProcessWindowMessage
 
@@ -34,6 +38,7 @@ private:
     LRESULT OnCreate(LPCREATESTRUCT lpCreateStruct);
     void OnDestroy();
     LRESULT OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam);
+    LRESULT OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
     UINT m_uID = 0;
 };

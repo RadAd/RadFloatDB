@@ -1,5 +1,7 @@
 #include "TaskBarIcon.h"
 
+UINT CTaskBarIcon::s_uTaskbarRestart = RegisterWindowMessage(TEXT("TaskbarCreated"));
+
 LRESULT CTaskBarIcon::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
     SetMsgHandled(FALSE);
@@ -51,5 +53,11 @@ LRESULT CTaskBarIcon::OnNotifyIcon(UINT uMsg, WPARAM wParam, LPARAM lParam)
     }
     else
         SetMsgHandled(FALSE);
+    return 0;
+}
+
+LRESULT CTaskBarIcon::OnTaskbarRestart(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+    AddIcon();
     return 0;
 }
