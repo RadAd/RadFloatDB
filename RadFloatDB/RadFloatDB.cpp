@@ -8,11 +8,12 @@ public:
     HRESULT PreMessageLoop(_In_ int nShowCmd) throw()
     {
         //AtlInitCommonControls(0xFFFF);
+        SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
 
         HWND hWnd = FindWindow(CMainWnd::GetWndClassInfo().m_wc.lpszClassName, nullptr);
         if (hWnd != NULL)
         {
-            AtlMessageBox(NULL, _T("Rad FLoat DB already running."), IDS_APP_TITLE);
+            AtlMessageBox(NULL, _T("Rad Float DB already running."), IDS_APP_TITLE);
             return S_FALSE;
         }
 

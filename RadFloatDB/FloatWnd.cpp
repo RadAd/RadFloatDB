@@ -155,7 +155,8 @@ LRESULT CFloatWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
     ATLVERIFY(SUCCEEDED(m_pDB->ShowDW(TRUE)));
 
     SetTimer(0, 100);
-    SetLayeredWindowAttributes(0, 128, LWA_ALPHA);
+    if (IsTransparent())
+        SetLayeredWindowAttributes(0, 128, LWA_ALPHA);
 
     return 0;
 }
